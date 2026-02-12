@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для Арины ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    animation: bgGlow 6s infinite alternate ease-in-out;
+    background: radial-gradient(circle at top, #ff758c, #ff7eb3, #ffb199);
+}
+
+/* Мерцание фона */
+@keyframes bgGlow {
+    0% {
+        filter: brightness(1);
+    }
+    100% {
+        filter: brightness(1.15);
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    color: white;
+    padding: 20px;
+}
+
+/* Имя с сердцем вокруг */
+.name-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.name-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: white;
+    position: relative;
+    z-index: 2;
+    text-shadow:
+        0 0 15px rgba(255,255,255,0.9),
+        0 0 30px rgba(255,255,255,0.6);
+}
+
+/* SVG сердце вокруг */
+.name-wrapper svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: pulse 2s infinite ease-in-out;
+    filter: drop-shadow(0 0 25px rgba(255, 50, 100, 0.8));
+}
+
+/* Пульсация */
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Текст */
+.message {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 60px;
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.8),
+        0 0 20px rgba(255,255,255,0.6);
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+    animation-delay: 1.5s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* Падающие сердечки */
+.heart {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    animation: fall linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #ff4d6d;
+    border-radius: 50%;
+}
+
+.heart::before { top: -9px; left: 0; }
+.heart::after { left: -9px; top: 0; }
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Адаптация */
+@media (max-width: 600px) {
+    .name-text {
+        font-size: 2.8rem;
+    }
+
+    .name-wrapper svg {
+        width: 200px;
+    }
+
+    .message {
+        font-size: 1.6rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="name-wrapper">
+        <div class="name-text">Арина</div>
+
+        <svg viewBox="0 0 32 29.6">
+            <path fill="#ff3366"
+                  d="M23.6,0c-3.4,0-6.4,2.4-7.6,5.5C14.8,2.4,11.8,0,8.4,0
+                     C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2s16-11.8,16-21.2
+                     C32,3.8,28.2,0,23.6,0z"/>
+        </svg>
+    </div>
+
+    <div class="message">
+        я тебя люблю ❤️
+    </div>
+
+</div>
+
+<script>
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    heart.style.opacity = Math.random();
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 250);
+</script>
+
+</body>
+</html>
